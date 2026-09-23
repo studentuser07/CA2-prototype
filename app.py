@@ -8,7 +8,8 @@ from sklearn.linear_model import LinearRegression
 
 # CHANGE THIS LINE. Use your own column names. Do not leave the words PASTE / HERE.
 # Do not add Displacement_cc. Empty engine cc will crash training.
-FEATURES = ['paste', 'your', 'feature', 'here']         # Example: ["Manufacture_Year", "Mileage_km"]
+FEATURES = [column_lookup[f.lower()] for f in requested_features if f.lower() in column_lookup]
+        # Example: ["Manufacture_Year", "Mileage_km"]
 RANDOM_STATE = 42   # public demo — does not need to match your Student ID
 
 @st.cache_data
