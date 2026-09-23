@@ -6,6 +6,15 @@ import streamlit as st
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
+# List the exact feature names you want to use
+requested_features = ['Manufacture_Year', 'Mileage_km', 'PS', 'Displacement_cc', 'Fuel']
+
+# Create lowercase dictionary map of actual dataframe columns
+column_lookup = {col.strip().lower(): col for col in df.columns}
+
+# Extract verified column names matching requested features safely
+FEATURES = [column_lookup[f.lower()] for f in requested_features if f.lower() in column_lookup]
+
 # CHANGE THIS LINE. Use your own column names. Do not leave the words PASTE / HERE.
 # Do not add Displacement_cc. Empty engine cc will crash training.
 FEATURES = [column_lookup[f.lower()] for f in requested_features if f.lower() in column_lookup]
